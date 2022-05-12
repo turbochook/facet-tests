@@ -1,0 +1,6 @@
+--output-dir "./doc/code"
+./lib/**/*.rb
+
+--private
+
+readme.md
