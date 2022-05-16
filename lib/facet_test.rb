@@ -104,7 +104,12 @@ OptionParser.new do |opts|
     opts.on(
         "-A",
         "--traceAll",
-        "Show all traces for the test regardless of condition. Equivalent to passing pfen to -t, -o, -d and -r"
+        "Show all traces for the test regardless of condition. Equivalent to passing pfen to -t, -o, -d and -r."
+    )
+    opts.on(
+        "-S",
+        "--stopOnFail",
+        "Stops a frame from running any further tests after a test has failed or encountered an exception."
     )
 end.parse!(into:cmds)
 
@@ -142,6 +147,10 @@ if cmds.has_key? :operatorTraceData
     setTrace(cmds[:operatorTraceData],true,true) do |result,show|
         @facetOptions.setOperatorDataTrace(result,show)
     end
+end
+
+if cmds.has_key? :stopOnFail
+    @facetOptions.stopOnFail = true
 end
 
 @facetOptions.streamer.streamBreak

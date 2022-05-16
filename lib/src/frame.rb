@@ -60,6 +60,12 @@ class Frame
     # @yieldreturn [FacetTest] to allow the consumer to define their tests.
     #
     def facet(desc)
+        if @tests.count > 0 and @options.stopOnFail
+            if @tests.values.last.getResult == :fail or @tests.values.last.getResult == :exception
+                puts "CORRECT"
+                return nil
+            end
+        end
         if @tests[desc] then raise StandardError.new "Facet already defined: #{desc}" end
         if @options.runFacet?(desc)
             if !@frameIntroduced 

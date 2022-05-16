@@ -55,6 +55,8 @@ class FacetOptions
     # @return [Integer] the maximum number of characters we would like to show on a line.
     #   Defaults to: 160.
     attr_reader :lineCharLength
+    # @return [Boolean] Controls whether we will continue our test suite after a fail/exception
+    attr_accessor :stopOnFail
 
     #
     # Builds a new FacetOptions setting all our defaults.
@@ -82,6 +84,7 @@ class FacetOptions
         @showDiff = true
         @lineCharLength = 160
         @frameFilter = nil
+        @stopOnFail = false
     end
 
     #
